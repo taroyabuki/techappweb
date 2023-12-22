@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Date and Time</title>
+  </head>
+  <body>
+    <div id="result"></div>
+    <script>
+      var result = document.getElementById("result"); // 要素の取得
+
+      function updateDateTime() {
+        var currentDateTime = new Date(); // 現在の日時を取得
+        result.textContent = currentDateTime.toString(); // 内容の更新
+      }
+
+      setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
+      updateDateTime(); // 初回の呼び出し
+    </script>
+  </body>
+</html>

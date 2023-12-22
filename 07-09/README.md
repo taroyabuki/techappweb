@@ -2,18 +2,24 @@
 
 第7，8，9章で解説したことを，実際に試す方法を紹介する。
 
+<!-- vscode-markdown-toc -->
+* [Dockerの動作確認](#Docker)
+* [実験用コンテナの構築](#)
+	* [サンプルファイルのダウンロード](#-1)
+* [本編](#-1)
+
+<!-- vscode-markdown-toc-config
+	numbering=false
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
 WebサーバはApache HTTP Server（以下，**Apache**）を使う。Webサーバ上で動作するプログラムの記述言語は**PHP**とする。
 
 > [!TIP]
 > ApacheやPHPは**コンテナ**内で動作させる。ApacheやPHPがうまく動かない場合には，コンテナを破棄してやり直せばよい。コンテナを構築するためのソフトウェアは**Docker**を想定する。作業用のコンピュータに直接インストールするのはDockerだけだから，そのコンピュータが本章のための実践でおかしくなることはないだろう。
 
-> [!NOTE]
-> ここでは次の作業を行う。
-> 1. Dockerの動作確認
-> 1. 実験用コンテナの構築
-
-
-## Dockerの動作確認
+## <a name='Docker'></a>Dockerの動作確認
 
 Dockerの動作を確認してから先に進む。コンテナのための環境構築は，本書の範囲を超えるため，割愛する。
 
@@ -48,7 +54,7 @@ docker run --rm curlimages/curl curl -s http://example.net | tail
 </html>
 ```
 
-## 実験用コンテナの構築
+## <a name=''></a>実験用コンテナの構築
 
 > [!IMPORTANT]
 > この後の作業は，次のコマンドで構築するコンテナ内で行う。このコマンドは空のフォルダで実行することが望ましい。特に，後で作成するフォルダtechappwebとの重複を避けるため，この名前のファイルやフォルダはあってはいけない。
@@ -73,7 +79,7 @@ docker run --rm -it -v "$(pwd)":/root/host -p 80:80 -p 3000:3000 ubuntu:jammy
 root@39c41e27367c:/#
 ```
 
-### サンプルファイルのダウンロード
+### <a name='-1'></a>サンプルファイルのダウンロード
 
 Gitをインストールして，このリポジトリをクローンする。
 
@@ -83,8 +89,8 @@ cd /root/host # ホストのカレントディレクトリに移動する。
 git clone https://github.com/taroyabuki/techappweb.git # このリポジトリをクローンする。
 ```
 
-## 本編
+## <a name='-1'></a>本編
 
 - [第7章 Webアプリケーション入門](07.md)
-- [第8章 Webアプリケーションのしくみ](08.md)
+- [第8章 Webアプリケーションの構築](08.md)
 - [第9章 Webアプリケーションのセキュリティ](09.md)
