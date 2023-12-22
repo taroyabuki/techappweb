@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Date and Time 1</title>
+    <script>
+      async function fetchData() {
+        const response = await fetch('http://localhost/date.php');
+        const data = await response.text();
+        document.getElementById('result').textContent = data;
+      }
+
+      window.onload = fetchData;
+    </script>
+  </head>
+  <body>
+    <div id="result"></div>
+  </body>
+</html>
