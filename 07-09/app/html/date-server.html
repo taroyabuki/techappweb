@@ -2,20 +2,20 @@
 <html lang="ja">
   <head>
     <title>Server Date and Time</title>
-    <script>
-      async function fetchData() {
-        const response = await fetch('http://localhost/date.php');
-        const data = await response.text();
-        document.getElementById('result').textContent = data;
-      }
-
-      window.onload = function() {
-        fetchData(); // 最初に一度データを取得
-        setInterval(fetchData, 1000); // 1秒ごとにデータを再取得
-      };
-    </script>
   </head>
   <body>
     <div id="result"></div>
+    <script>
+      var result = document.getElementById("result");
+
+      async function fetchData() {
+        const response = await fetch('http://localhost/date.php');
+        const data = await response.text();
+        result.textContent = data;
+      }
+
+      setInterval(fetchData, 1000); // 1秒ごとにfetchData関数を呼び出す
+      fetchData(); // 初回の呼び出し
+    </script>
   </body>
 </html>

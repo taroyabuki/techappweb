@@ -8,46 +8,47 @@
 <body>
 <form action="/submit" method="post">
   <dl>
-    <dt><label for="username">ユーザー名</label></dt>
-    <dd><input type="text" id="username" name="username" required></dd>
-    <dt><label for="password">パスワード</label></dt>
-    <dd><input type="password" id="password" name="password" required></dd>
+    <dt>ユーザ名</dt>
+    <dd><input type="text" name="username" required></dd>
+    <dt>パスワード</dt>
+    <dd><input type="password" name="password" required></dd>
 
     <dt>性別</dt>
     <dd>
-      <input type="radio" id="male" name="gender" value="male">
-      <label for="male">男性</label>
-      <input type="radio" id="female" name="gender" value="female">
-      <label for="female">女性</label>
+      <input type="radio" name="gender" value="male">
+      <label>男性</label>
+      <input type="radio" name="gender" value="female">
+      <label>女性</label>
     </dd>
     
     <dt>興味</dt>
     <dd>
-      <input type="checkbox" id="music" name="interest" value="music">
-      <label for="music">音楽</label>
-      <input type="checkbox" id="books" name="interest" value="books">
-      <label for="books">本</label>
+      <input type="checkbox" name="interest" value="music">
+      <label>音楽</label>
+      <input type="checkbox" name="interest" value="books">
+      <label>本</label>
     </dd>
     
-    <dt><label for="document">ドキュメント</label></dt>
-    <dd><input type="file" id="document" name="document"></dd>
+    <dt>ドキュメント</dt>
+    <dd><input type="file" name="document"></dd>
+    <dt>隠し要素</dt>
     <dd><input type="hidden" name="userid" value="12345"></dd>
     
-    <dt><label for="email">Eメール</label></dt>
-    <dd><input type="email" id="email" name="email"></dd>
+    <dt>Eメール</dt>
+    <dd><input type="email" name="email"></dd>
     
-    <dt><label for="quantity">数量</label></dt>
-    <dd><input type="number" id="quantity" name="quantity" min="1" max="100"></dd>
+    <dt>数量</dt>
+    <dd><input type="number" name="quantity" min="1" max="100"></dd>
     
-    <dt><label for="birthday">誕生日</label></dt>
-    <dd><input type="date" id="birthday" name="birthday"></dd>
+    <dt>誕生日</dt>
+    <dd><input type="date" name="birthday"></dd>
     
-    <dt><label for="volume">音量</label></dt>
-    <dd><input type="range" id="volume" name="volume" min="0" max="100"></dd>
+    <dt>音量</dt>
+    <dd><input type="range" name="volume" min="0" max="100"></dd>
     
-    <dt><label for="planet">星</label></dt>
+    <dt>星</dt>
     <dd>
-      <select id="planet" name="planet">
+      <select name="planet">
         <option value="earth">地球</option>
         <option value="moon">月</option>
         <option value="mars">火星</option>

@@ -6,11 +6,11 @@
   <body>
     <div id="result"></div>
     <script>
-      var result = document.getElementById("result"); // 要素の取得
+      var result = document.getElementById("result");
 
       function updateDateTime() {
-        var currentDateTime = new Date(); // 現在の日時を取得
-        result.textContent = currentDateTime.toString(); // 内容の更新
+        var currentDateTime = new Date();
+        result.textContent = currentDateTime.toString();
       }
 
       setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
