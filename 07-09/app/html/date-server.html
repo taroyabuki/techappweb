@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <title>Server Date and Time</title>
-  </head>
-  <body>
-    <div id="result"></div>
-    <script>
-      var result = document.getElementById("result");
 
-      async function fetchData() {
-        const response = await fetch('http://localhost/date.php');
-        const data = await response.text();
-        result.textContent = data;
-      }
+<head>
+  <title>Server Date and Time</title>
+</head>
 
-      setInterval(fetchData, 1000); // 1秒ごとにfetchData関数を呼び出す
-      fetchData(); // 初回の呼び出し
-    </script>
-  </body>
+<body>
+  <div id="result"></div>
+  <script>
+    const result = document.getElementById('result');
+
+    const fetchData = async () => {
+      const response = await fetch('http://localhost/date.php');
+      const data = await response.text();
+      result.textContent = data; // 非同期通信による内容の更新
+    };
+
+    setInterval(fetchData, 1000);
+    fetchData();
+  </script>
+</body>
+
 </html>

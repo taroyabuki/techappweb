@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <title>Client Date and Time</title>
-  </head>
-  <body>
-    <div id="result"></div>
-    <script>
-      var result = document.getElementById("result");
 
-      function updateDateTime() {
-        var currentDateTime = new Date();
-        result.textContent = currentDateTime.toString();
-      }
+<head>
+  <title>Client Date and Time</title>
+</head>
 
-      setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
-      updateDateTime(); // 初回の呼び出し
-    </script>
-  </body>
+<body>
+  <div id="result"></div>
+  <script>
+    const result = document.querySelector('#result');
+
+    const updateDateTime = () => {
+      const currentDateTime = new Date();
+      result.textContent = currentDateTime.toLocaleString();
+    };
+
+    setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
+    updateDateTime(); // 初回の呼び出し
+  </script>
+</body>
+
 </html>

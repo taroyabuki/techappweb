@@ -1,1 +1,1 @@
-<?php echo date("r");
+<?= date("r") ?>
