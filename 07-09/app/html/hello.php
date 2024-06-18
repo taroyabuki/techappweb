@@ -1,1 +1,1 @@
-<?= 'Hello, ' . $_GET['name'] ?>
+<?= 'Hello, ' . $_GET['username'] ?>
