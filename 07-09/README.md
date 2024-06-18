@@ -5,7 +5,8 @@
 <!-- vscode-markdown-toc -->
 * [Dockerの動作確認](#Docker)
 * [実験用コンテナの構築](#)
-	* [サンプルファイルのダウンロード](#-1)
+	* [ソフトウェアのインストール](#-1)
+	* [サンプルファイルの準備](#-1)
 * [本編](#-1)
 
 <!-- vscode-markdown-toc-config
@@ -23,10 +24,10 @@ WebサーバはApache HTTP Server（以下，**Apache**）を使う。Webサー�
 
 Dockerの動作を確認してから先に進む。コンテナのための環境構築は，本書の範囲を超えるため，割愛する。
 
-次のコマンドを実行する。
+Dockerが動作している状態で，次のコマンドを実行する。（Windowsでは，Windows TerminalかPowerShellを使う．WSLのターミナルも使えるかもしれない．）
 
 ```bash
-docker run --rm curlimages/curl curl -s http://example.net | tail
+docker run --rm curlimages/curl curl -s http://example.net
 ```
 
 このコマンドについて補足する。
@@ -37,12 +38,11 @@ docker run --rm curlimages/curl curl -s http://example.net | tail
 `--rm`|終了時にコンテナを削除する。
 `curlimages/curl`|コンテナのイメージ（テンプレート）。
 `curl -s http://example.net`|http://example.net にアクセスしてその結果を表示する（「`-s`」は進行状況を非表示にするためのオプション）。
-`\| tail`|結果の最後の10行を表示する。
 
 実行結果は次のとおり。この結果から，コンテナを構築できること，コンテナからのWebにアクセスできることがわかる。
 
 ```
-
+（省略）
 <body>
 <div>
     <h1>Example Domain</h1>
@@ -57,10 +57,10 @@ docker run --rm curlimages/curl curl -s http://example.net | tail
 ## <a name=''></a>実験用コンテナの構築
 
 > [!IMPORTANT]
-> この後の作業は，次のコマンドで構築するコンテナ内で行う。このコマンドは空のフォルダで実行することが望ましい。特に，後で作成するフォルダtechappwebとの重複を避けるため，この名前のファイルやフォルダはあってはいけない。
+> この後の作業は，次のコマンドで構築するコンテナ内で行う。コンテナ内での作業の結果は残さない．コンテナは停止時に削除される．作業の結果を残したい場合は，VS CodeのDev Containersを使うのが簡単．`docker run`の実行時にオプション`-v`でコンテナのディレクトリにホストのディレクトリをマウントしてもよい（詳細は割愛）．
 
 ```bash
-docker run --rm -it -v "$(pwd)":/root/host -p 80:80 -p 3000:3000 ubuntu:jammy
+docker run --rm -it -p 80:80 -p 3000:3000 ubuntu:jammy
 ```
 
 このコマンドについて補足する。
@@ -68,25 +68,59 @@ docker run --rm -it -v "$(pwd)":/root/host -p 80:80 -p 3000:3000 ubuntu:jammy
 部分|意味
 --|--
 `-it`|コンテナ内で対話的に作業する。
-`-v "$(pwd)":/root/host`|ホストのカレントディレクトリ（コマンドを実行したフォルダ）をコンテナの/root/hostにマウントする（ホストのフォルダとコンテナのフォルダを同一視する）。
 `-p 80:80`|ホストの80番ポートをコンテナの80番ポートにマッピングする（localhost:80へのアクセスがコンテナの80番ポートへのアクセスになる）。
 `-p 3000:3000`|ホストの3000番ポートをコンテナの3000番ポートにマッピングする（localhost:3000へのアクセスがコンテナの3000番ポートへのアクセスになる）。
 `ubuntu:jammy`|コンテナのイメージ（テンプレート）。
 
-実行すると，次のようなプロンプトが表示される。このプロンプトでコマンドを入力して，実験を進める。`39c41e27367c`の部分はコンテナのIDで，実行するたびに変わる。
+実行すると，次のようなプロンプトが表示される。`39c41e27367c`の部分はコンテナのIDで，実行するたびに変わる。`#`は管理者（root）であることを表している（一般には危険だが，壊れてよいコンテナだから心配は無用である）．
 
 ```bash
 root@39c41e27367c:/#
 ```
 
-### <a name='-1'></a>サンプルファイルのダウンロード
+コンテナは，`exit`あるいはCtrl-`d`で終了する．Docker DesktopのContainersタブでコンテナを削除してもよい．
 
-Gitをインストールして，このリポジトリをクローンする。
+終了を試した場合は，もう一度`docker run...`を実行してから先に進む．
+
+ここからはコンテナ内での作業である．
+
+### <a name='-1'></a>ソフトウェアのインストール
+
+> [!IMPORTANT]
+> 必要なソフトウェア（Git，Apache，PHP）をインストールする。
+
+インストール作業を非対話モードで行うための設定をする．
 
 ```bash
-apt update && apt install -y git # Gitをインストールする。
-cd /root/host # ホストのカレントディレクトリに移動する。
-git clone https://github.com/taroyabuki/techappweb.git # このリポジトリをクローンする。
+export DEBIAN_FRONTEND=noninteractive
+```
+```bash
+apt update && apt install -y git apache2 libapache2-mod-php
+```
+
+### <a name='-1'></a>サンプルファイルの準備
+
+> [!IMPORTANT]
+> サンプルファイルをダウンロードして，Webサーバで配信する準備をする．
+
+作業ディレクトリを移動する．
+
+```bash
+cd /var/www
+```
+
+このリポジトリをクローンする．
+
+```bash
+git clone https://github.com/taroyabuki/techappweb.git
+```
+
+ドキュメントルートを変更する．
+
+```bash
+cp html/index.html techappweb/07-09/app/html/
+rm -rf html
+ln -s techappweb/07-09/app/html html
 ```
 
 ## <a name='-1'></a>本編

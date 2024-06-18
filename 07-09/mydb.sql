@@ -14,8 +14,8 @@ INSERT INTO items (name, price, stock) VALUES
 
 SELECT id,name FROM items WHERE stock>1;
 
-UPDATE items SET stock=1 WHERE id=2';
+UPDATE items SET stock=1 WHERE id=2;
 
-DELETE FROM items WHERE id=4';
+DELETE FROM items WHERE id=4;
 
 SELECT * FROM items;
