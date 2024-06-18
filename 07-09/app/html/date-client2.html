@@ -8,7 +8,7 @@
 <body>
   <div id="result"></div>
   <script>
-    const result = document.querySelector('#result');
+    const result = document.getElementById('result');
 
     const updateDateTime = () => {
       const currentDateTime = new Date();
@@ -16,7 +16,6 @@
     };
 
     setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
-    updateDateTime(); // 初回の呼び出し
   </script>
 </body>
 
