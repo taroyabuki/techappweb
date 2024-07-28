@@ -60,7 +60,7 @@ docker run --rm curlimages/curl curl -s http://example.net
 > この後の作業は，次のコマンドで構築するコンテナ内で行う。コンテナ内での作業の結果は残さない．コンテナは停止時に削除される．作業の結果を残したい場合は，VS CodeのDev Containersを使うのが簡単．`docker run`の実行時にオプション`-v`でコンテナのディレクトリにホストのディレクトリをマウントしてもよい（詳細は割愛）．
 
 ```bash
-docker run --rm -it -p 80:80 -p 3000:3000 ubuntu:jammy
+docker run --rm -it -p 80:80 -p 3000:3000 ubuntu:24.04
 ```
 
 このコマンドについて補足する。
@@ -70,7 +70,7 @@ docker run --rm -it -p 80:80 -p 3000:3000 ubuntu:jammy
 `-it`|コンテナ内で対話的に作業する。
 `-p 80:80`|ホストの80番ポートをコンテナの80番ポートにマッピングする（localhost:80へのアクセスがコンテナの80番ポートへのアクセスになる）。
 `-p 3000:3000`|ホストの3000番ポートをコンテナの3000番ポートにマッピングする（localhost:3000へのアクセスがコンテナの3000番ポートへのアクセスになる）。
-`ubuntu:jammy`|コンテナのイメージ（テンプレート）。
+`ubuntu:24.04`|コンテナのイメージ（テンプレート）。
 
 実行すると，次のようなプロンプトが表示される。`39c41e27367c`の部分はコンテナのIDで，実行するたびに変わる。`#`は管理者（root）であることを表している（一般には危険だが，壊れてよいコンテナだから心配は無用である）．
 
@@ -89,13 +89,12 @@ root@39c41e27367c:/#
 > [!IMPORTANT]
 > 必要なソフトウェア（Git，Apache，PHP）をインストールする。
 
-インストール作業を非対話モードで行うための設定をする．
+インストール作業を非対話モードに設定してから，必要なソフトウェアをインストールする．
 
 ```bash
 export DEBIAN_FRONTEND=noninteractive
-```
-```bash
-apt update && apt install -y git apache2 libapache2-mod-php
+apt-get update
+apt-get install -y git apache2 libapache2-mod-php
 ```
 
 ### <a name='-1'></a>サンプルファイルの準備
@@ -103,15 +102,10 @@ apt update && apt install -y git apache2 libapache2-mod-php
 > [!IMPORTANT]
 > サンプルファイルをダウンロードして，Webサーバで配信する準備をする．
 
-作業ディレクトリを移動する．
+作業ディレクトリを移動して，このリポジトリをクローンする．
 
 ```bash
 cd /var/www
-```
-
-このリポジトリをクローンする．
-
-```bash
 git clone https://github.com/taroyabuki/techappweb.git
 ```
 
