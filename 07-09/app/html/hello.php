@@ -1,1 +1,2 @@
-<?= 'Hello, ' . $_GET['username'] ?>
+<?php
+echo "Hello, {$_GET['username']}.";
