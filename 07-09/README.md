@@ -2,19 +2,6 @@
 
 第7，8，9章で解説したことを，実際に試す方法を紹介する。
 
-<!-- vscode-markdown-toc -->
-* [Dockerの動作確認](#Docker)
-* [実験用コンテナの構築](#)
-	* [ソフトウェアのインストール](#-1)
-	* [サンプルファイルの準備](#-1)
-* [本編](#-1)
-
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
 WebサーバはApache HTTP Server（以下，**Apache**）を使う。Webサーバ上で動作するプログラムの記述言語は**PHP**とする。
 
 > [!TIP]
