@@ -1,5 +1,4 @@
 <?php
-$db = new PDO('sqlite:/var/data/mydb.db');
 $foo = $_GET['search_name'];
 $query = "SELECT * FROM items WHERE name LIKE '%{$foo}%'";
 $stmt = $db->prepare($query);

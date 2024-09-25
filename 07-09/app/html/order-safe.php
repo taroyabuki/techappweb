@@ -1,22 +1,24 @@
 <?php
 echo date("r");
-$db = new SQLite3("/var/data/mydb.db");
-$db->enableExceptions(true);
+
 try {
-  $db->exec("BEGIN");
-  $stock = $db->querySingle("SELECT stock FROM items WHERE id = 2");
-  if ($stock >= 1) {
+  $db->beginTransaction(); # ★トランザクション開始
+  $stmt = $db->prepare("SELECT stock FROM items WHERE id = 2"); # 在庫確認
+  $stmt->execute();
+  $stock = $stmt->fetchColumn();
+  if ($stock >= 1) { # 在庫あり
     echo "\n<p>Current stock for item ID 2: {$stock}</p>\n";
-    sleep(10); // 10秒
-    $newStock = $stock - 1;
-    $db->exec("UPDATE items SET stock = {$newStock} WHERE id = 2");
-    $db->exec("COMMIT");
-    echo "<p>Order placed successfully! New stock: $newStock</p>\n";
-  } else {
-    $db->exec("ROLLBACK");
+    sleep(5);               # 5秒待つ。
+    $newStock = $stock - 1; # 在庫を1減らし，データベースを更新する。
+    $stmt = $db->prepare("UPDATE items SET stock = {$newStock} WHERE id = 2");
+    $stmt->execute();
+    $db->commit(); # ★トランザクション終了
+    echo "<p>Order placed successfully! New stock: {$newStock}</p>\n";
+  } else { # 在庫なし
+    $db->rollBack(); # ★ロールバック
     echo "<p>Not enough stock.</p>\n";
   }
 } catch (Exception $e) {
-  $db->exec("ROLLBACK");
+  $db->rollBack(); # ★ロールバック
   echo "<p>An error occurred: " . $e->getMessage() . "</p>\n";
 }

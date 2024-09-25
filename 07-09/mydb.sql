@@ -1,6 +1,14 @@
+/*! DROP DATABASE IF EXISTS mydb */;
+/*! CREATE DATABASE mydb */;
+/*! DROP USER IF EXISTS 'testuser'@'localhost' */;
+/*! CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'pass' */;
+/*! GRANT ALL PRIVILEGES ON mydb.* TO 'testuser'@'localhost' */;
+/*! FLUSH PRIVILEGES */;
+/*! USE mydb */;
+
 DROP TABLE IF EXISTS items;
 CREATE TABLE items (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id INTEGER PRIMARY KEY /*! AUTO_INCREMENT */,
   name TEXT,
   price INTEGER,
   stock INTEGER
