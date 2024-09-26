@@ -83,7 +83,7 @@ root@39c41e27367c:/#
 ```bash
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y git apache2 libapache2-mod-php php-mbstring
+apt-get install -y curl git apache2 libapache2-mod-php php-mbstring
 ```
 
 ### <a name='-1'></a>サンプルファイルの準備
@@ -104,6 +104,12 @@ git clone https://github.com/taroyabuki/techappweb.git
 cp html/index.html techappweb/07-09/app/html/
 rm -rf html
 ln -s techappweb/07-09/app/html html
+```
+
+Apache起動時の警告を抑制するために，ServerNameを設定する（必須ではない）。
+
+```bash
+echo 'ServerName www.example.com' >> /etc/apache2/apache2.conf
 ```
 
 ## <a name='-1'></a>本編
