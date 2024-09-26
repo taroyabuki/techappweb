@@ -8,15 +8,15 @@
 <body>
   <div id="result"></div>
   <script>
-    const result = document.getElementById('result');
+    const result = document.getElementById('result'); // 要素の取得
 
-    const fetchData = async () => {
+    const updateDateTime = async () => { // 日時を更新する関数
       const response = await fetch('http://localhost/date.php');
       const data = await response.text();
-      result.textContent = data; // 非同期通信による内容の更新
+      result.textContent = data;
     };
 
-    setInterval(fetchData, 1000);
+    setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTimeを呼び出す。
   </script>
 </body>
 

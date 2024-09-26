@@ -2,20 +2,20 @@
 <html lang="ja">
 
 <head>
-  <title>Client Date and Time</title>
+  <title>Client Date and Time 2</title>
 </head>
 
 <body>
   <div id="result"></div>
   <script>
-    const result = document.getElementById('result');
+    const result = document.getElementById('result'); // 要素の取得
 
-    const updateDateTime = () => {
+    const updateDateTime = () => { // 日時を更新する関数
       const currentDateTime = new Date();
       result.textContent = currentDateTime.toLocaleString();
     };
 
-    setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTime関数を呼び出す
+    setInterval(updateDateTime, 1000); // 1秒ごとにupdateDateTimeを呼び出す。
   </script>
 </body>
 
