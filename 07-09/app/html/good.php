@@ -6,4 +6,4 @@ echo '<?xml version="1.0" encoding="UTF-8"?>
 </svg>';
 
 session_start();
-error_log($_SESSION['name'] ?? 'Guest');
+error_log($_SESSION['username'] ?? 'Guest');

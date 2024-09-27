@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (isset($_GET['name'])) {
-  $_SESSION['name'] = $_GET['name'];
+if (isset($_GET['username'])) {
+  $_SESSION['username'] = $_GET['username'];
 }
 
-if (isset($_SESSION['name'])) {
-  echo "Hello, {$_SESSION['name']}.\n";
+if (isset($_SESSION['username'])) {
+  echo "Hello, {$_SESSION['username']}.\n";
 }
