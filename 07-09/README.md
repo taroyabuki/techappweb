@@ -107,7 +107,7 @@ git clone https://github.com/taroyabuki/techappweb.git
 ```bash
 cp html/index.html techappweb/07-09/app/html/
 rm -rf html
-ln -s techappweb/07-09/app/html html
+ln -s techappweb/07-09/html html
 ```
 
 Apache起動時の警告を抑制するために，ServerNameを設定する（必須ではない）。
