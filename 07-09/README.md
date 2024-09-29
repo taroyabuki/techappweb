@@ -86,8 +86,7 @@ root@39c41e27367c:/#
 
 ```bash
 export DEBIAN_FRONTEND=noninteractive
-apt-get update
-apt-get install -y curl git apache2 libapache2-mod-php php-mbstring
+apt-get update && apt-get install -y curl git apache2 libapache2-mod-php php-mbstring
 ```
 
 ### <a name='-1'></a>サンプルファイルの準備
