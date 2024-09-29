@@ -105,7 +105,7 @@ git clone https://github.com/taroyabuki/techappweb.git
 ドキュメントルートを変更する。
 
 ```bash
-cp html/index.html techappweb/07-09/app/html/
+cp html/index.html techappweb/07-09/html/
 rm -rf html
 ln -s techappweb/07-09/html html
 ```
