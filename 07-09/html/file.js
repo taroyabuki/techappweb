@@ -1,0 +1,1 @@
+alert('type B');
