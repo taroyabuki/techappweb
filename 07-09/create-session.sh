@@ -10,3 +10,5 @@ session_id=$(echo "$response" | grep -oP '(?<=PHPSESSID=)[^;]+')
 echo "1. (browser) http://localhost/hello.php?username=%3Cscript%3Edocument.cookie%3D'PHPSESSID%3D$session_id'%3B%3C%2Fscript%3E"
 echo "2. (browser) http://localhost/session.php?username=Yabuki"
 echo "3. (shell) curl http://localhost/session.php -H 'Cookie: PHPSESSID=$session_id'"
+echo "4. (browser) http://localhost/session_regenerate_id.php?username=Taro"
+echo "5. (shell) curl http://localhost/session.php -H 'Cookie: PHPSESSID=$session_id'"
