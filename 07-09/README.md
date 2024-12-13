@@ -1,16 +1,15 @@
 # 第7，8，9章のための実験環境
 
-> [!IMPORTANT]
-> 第7，8，9章で解説したことを，実際に試す方法を紹介する。
+第7，8，9章で解説したことを，実際に試す方法を紹介する。
 
 WebサーバはApache HTTP Server（以下，**Apache**）を使う。Webサーバ上で動作するプログラムの記述言語は**PHP**とする。
 
 > [!TIP]
-> ApacheやPHPは**コンテナ**内で動作させる。ApacheやPHPがうまく動かない場合には，コンテナを破棄してやり直せばよい。コンテナを構築するためのソフトウェアは**Docker**を想定する。作業用のコンピュータに直接インストールするのはDockerだけだから，そのコンピュータが本章のための実践でおかしくなることはないだろう。
+> ApacheやPHPは**コンテナ**内で動作させる。ApacheやPHPがうまく動かない場合には，コンテナを破棄してやり直せばよい。コンテナを構築するためのソフトウェアは**Docker**を想定する。作業用のコンピュータに直接インストールするのはDockerだけである。
 
-## <a name='Docker'></a>Dockerの動作確認
+## Dockerの動作確認
 
-Dockerの動作を確認してから先に進む。コンテナのための環境構築は，本書の範囲を超えるため，割愛する。
+Dockerの動作を確認する。コンテナのための環境構築は，本書の範囲を超えるため，割愛する。
 
 Dockerが動作している状態で，次のコマンドを実行する。（Windowsでは，Windows TerminalかPowerShellを使う。WSLのターミナルも使えるかもしれない。）
 
@@ -42,7 +41,7 @@ docker run --rm curlimages/curl curl -s http://example.net
 </html>
 ```
 
-## <a name=''></a>実験用コンテナの構築
+## 実験用コンテナの構築
 
 > [!WARNING]
 > この後の作業は，次のコマンドで構築するコンテナ内で行う。コンテナ内での作業の結果は残さない。コンテナは停止時に削除される。
@@ -77,22 +76,20 @@ root@39c41e27367c:/#
 
 ここからはコンテナ内での作業である。
 
-### <a name='-1'></a>ソフトウェアのインストール
+### ソフトウェアのインストール
 
-> [!NOTE]
-> 必要なソフトウェア（Git，Apache，PHP）をインストールする。
-
-インストール作業を非対話モードに設定してから，必要なソフトウェアをインストールする。
+必要なソフトウェア（Git，Apache，PHP）をインストールする。
 
 ```bash
-export DEBIAN_FRONTEND=noninteractive
-apt-get update && apt-get install -y curl git apache2 libapache2-mod-php php-mbstring
+apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl git apache2 libapache2-mod-php php-mbstring
 ```
 
-### <a name='-1'></a>サンプルファイルの準備
+> [!TIP]
+> `DEBIAN_FRONTEND=noninteractive`は，インストール時に対話的な質問をしないようにするための設定である。
 
-> [!IMPORTANT]
-> サンプルファイルをダウンロードして，Webサーバで配信する準備をする。
+### サンプルファイルの準備
+
+サンプルファイルをダウンロードして，Webサーバで配信する準備をする。
 
 作業ディレクトリを移動して，このリポジトリをクローンする。
 
@@ -115,7 +112,7 @@ Apache起動時の警告を抑制するために，ServerNameを設定する（�
 echo 'ServerName www.example.com' >> /etc/apache2/apache2.conf
 ```
 
-## <a name='-1'></a>本編
+## 本編
 
 - [第7章 Webアプリケーションの基礎](07.md)
 - [第8章 Webアプリケーションの構築](08.md)
