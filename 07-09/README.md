@@ -109,7 +109,7 @@ ln -s techappweb/07-09/html html
 Apache起動時の警告を抑制するために，ServerNameを設定する（必須ではない）。
 
 ```bash
-echo 'ServerName www.example.com' >> /etc/apache2/apache2.conf
+echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 ```
 
 ## 本編
